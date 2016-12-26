@@ -3,7 +3,7 @@
 
 
 
-void create_noise(int L, double *h3, double *noise, double sigma, double dt, double dx, long *inic)
+void create_noise(int L, double *h3, double *noise, const double& sigma, const double& dt, const double& dx, long *inic)
 { int i;
   double dht=sqrt(dt*sigma);
     
@@ -21,7 +21,7 @@ void create_noise(int L, double *h3, double *noise, double sigma, double dt, dou
 
 
 
-void create_funcional_st(int L, double *r, double *h, double *h3, int *ind, double theta, double dx, double dt)
+void create_funcional_st(int L, double *r, double *h, double *h3, int *ind, const double& theta, const double& dx, const double& dt)
 { int i; double dx4dt=dt/(dx*dx*dx*dx);
     
 for(i=0;i<L;i++)
@@ -35,7 +35,7 @@ for(i=0;i<L;i++)
 
 
 
-void create_funcional_add_vdw_noise(int L, double *r, double *h, double *noise, int *ind, double A, double B, double dx, double dt)
+void create_funcional_add_vdw_noise(int L, double *r, double *h, double *noise, int *ind, const double& A, const double& B, const double& dx, const double& dt)
 { int i; double dx2dt=dt/(dx*dx);
     
     for(i=0;i<L;i++)

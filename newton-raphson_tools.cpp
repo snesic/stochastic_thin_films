@@ -3,7 +3,7 @@
 
 
 
-void elimination(double ** a, double *r, double *q, int L)    // Gaussan elimination of 5 diagonal matrix, gives q out of Aq=r
+void elimination(double ** a, double *r, double *q, const int& L)    // Gaussan elimination of 5 diagonal matrix, gives q out of Aq=r
 {
   int i,j,l; double c;
 
@@ -33,7 +33,7 @@ void elimination(double ** a, double *r, double *q, int L)    // Gaussan elimina
 
 }
 
-void calculate_matrix_A(double **a, int L, double *y, double *y2, double *y3, double theta, double dx, double dt)
+void calculate_matrix_A(double **a, const int& L, double *y, double *y2, double *y3, const double& theta, const double& dx, const double& dt)
 { int i,j; double dx4dt = dt/(dx*dx*dx*dx);
     
     // B.C. for the coefficients left:
@@ -92,7 +92,7 @@ void calculate_matrix_A(double **a, int L, double *y, double *y2, double *y3, do
     for(i=0;i<L;i++) a[i][2]=1+a[i][2];
 }
 
-double calculate_volume(int L, double *h, double dx)
+double calculate_volume(const int& L, double *h, const double& dx)
 { int i; double vol=0;
     
 for(i=0;i<L;i++)
@@ -101,7 +101,7 @@ for(i=0;i<L;i++)
 return vol*dx;
 }
 
-void check_volume(int L, double vol_0, double *h, double *y, double dx, double jdt)
+void check_volume(const int& L, double& vol_0, double *h, double *y, const double& dx, const double& jdt)
 {
 int i, maxq;
 double vol;
@@ -119,8 +119,8 @@ double vol;
     }
 }
 
-int check_second_time_derivative(int L, double *h, double *y, double *old_sol, double *dtt, double dt_old, int *no_good_solutions)
-{ double maxq, t_err, dt=*dtt;
+int check_second_time_derivative(const int& L, double *h, double *y, double *old_sol, double& dtt, double dt_old, int& no_good_solutions)
+{ double maxq, t_err, dt=dtt;
     int i;
 
     maxq = (2*dt/dt_old)*(y[0]*dt_old+old_sol[0]*dt-(dt_old+dt)*h[0])/(h[0]*(dt+dt_old));
@@ -131,14 +131,14 @@ int check_second_time_derivative(int L, double *h, double *y, double *old_sol, d
     }
     
     if (maxq<0.01)
-    {   (*no_good_solutions)++;
+    {   no_good_solutions++;
         return 0;
     }
     else{ if(maxq>0.1)
             {   no_good_solutions=0;
-                *dtt=dt-pow(10,-fabs(round(log10(dt)))-2);
-                //*dtt=floorf(dt * pow(10,fabs(round(log10(dt)))+1) *100 ) / (100*pow(10,fabs(round(log10(dt)))+1));
-                cout << "Time derivative error, repeat iteration for smaller dt " << *dtt << endl;
+                dtt=dt-pow(10,-fabs(round(log10(dt)))-2);
+                //dtt=floorf(dt * pow(10,fabs(round(log10(dt)))+1) *100 ) / (100*pow(10,fabs(round(log10(dt)))+1));
+                cout << "Time derivative error, repeat iteration for smaller dt " << dtt << endl;
                 return 1;
             }
         }
@@ -146,7 +146,7 @@ int check_second_time_derivative(int L, double *h, double *y, double *old_sol, d
 return 0;
 }
 
-int check_newton_convergence(int L, double *h, double *y, double *q, double *dt, double jdt, int *no_good_solutions, int *no_consecutive_neg, int no_newton_it, double *mq)
+int check_newton_convergence(const int& L, double *h, double *y, double *q, double& dt, const double& jdt, int& no_good_solutions, int& no_consecutive_neg, const int& no_newton_it, double& mq)
 {   double maxq=0;
     int i;
     
@@ -156,8 +156,8 @@ int check_newton_convergence(int L, double *h, double *y, double *q, double *dt,
         if(y[i]+q[i]<0)
             {
             cout<< h[i] << "  at " << jdt << " , on the position " <<  i   << "  is negative!" << endl;
-            (*no_consecutive_neg)++;
-            if(*no_consecutive_neg>10) {cout << "Wrong parameters -> Simulation breaks!" << endl; return 2;}
+            no_consecutive_neg++;
+            if(no_consecutive_neg>10) {cout << "Wrong parameters -> Simulation breaks!" << endl; return 2;}
             return 1;
             }
         else
@@ -165,12 +165,12 @@ int check_newton_convergence(int L, double *h, double *y, double *q, double *dt,
     }
     
     if(no_newton_it>10)
-        {   *no_good_solutions=0;
-            *dt=*dt-pow(10,-fabs(round(log10(*dt)))-2);
+        {   no_good_solutions=0;
+            dt=dt-pow(10,-fabs(round(log10(dt)))-2);
             return 1;
         }
     
-    *mq=maxq;
+    mq=maxq;
     
 return 0;
 }

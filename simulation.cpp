@@ -79,7 +79,7 @@ for(i=0;i<L;i++)
         calculate_matrix_A(a,L, y, y2, y3, theta, dx, dt);
         elimination(a,r,q,L); // Gauss elimination to calculate q from Aq=r;
  
-        switch (check_newton_convergence(L, h, y, q, &dt, jdt, &no_good_solutions, &no_consecutive_neg, no_newton_it, &maxq))
+        switch (check_newton_convergence(L, h, y, q, dt, jdt, no_good_solutions, no_consecutive_neg, no_newton_it, maxq))
             {
                 case 0: break;
                 case 1: goto ponovo;
@@ -96,7 +96,7 @@ for(i=0;i<L;i++)
 //----Checking errors (vol conservation, second time derivative small enough)
  
     check_volume(L, vol_0, h, y, dx, jdt);
-    if (check_second_time_derivative(L, h, y, old_sol, &dt, dt_old, &no_good_solutions) == 1 ) goto ponovo;
+    if (check_second_time_derivative(L, h, y, old_sol, dt, dt_old, no_good_solutions) == 1 ) goto ponovo;
     
 
 //------------The solution is good enough - write in file-------------------------

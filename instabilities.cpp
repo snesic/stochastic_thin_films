@@ -2,7 +2,7 @@
  *  
  * Simulation of a droplet over a flat substrate decribed by the differential equation 
 
-\frac{\partial h}{\partial t}=-\nabla [D(h)\nabla \nabla^2 h] + vdW + gravity!
+\frac{\partial h}{\partial t}=-\nabla [D(h)\nabla \nabla^2 h] + vdW !
 
 where D(h)=h^3 is a diffusion. Standard sheme is used: D(h_i)=1/2(h_{i+1}+h_{i}). 
 
