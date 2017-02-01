@@ -16,11 +16,8 @@ makefile -> compile by make on UNIX systems
 
 instabilities.cpp ---> main file, sets the parameters and calls simulation 
 
-simulation.h   ----> implicit stochastic thin film solver. Solves the equation and writes down the solutions (thin film surface) at integer times from t0 to t.  
+film.h   ----> implicit stochastic thin film solver. Solves the equation and writes down the solutions (thin film surface) at integer times from t0 to t.  
 
-create_forces.h  ---> Creates forces (surface tension, vdw and thermal noise) for the simulation 
-
-random_no_generators.h -> Gaussian random number generator
 
 initial_conditions.h -> Initial conditions (if t0=0 [Flat film, randomly perturbed flat film, droplet], if 
                                             if t0>0 reads from file droplet_surface_t0.txt)
