@@ -1,8 +1,8 @@
 #ifndef _FILM_H_INCLUDED__
 #define _FILM_H_INCLUDED__
 #include <iostream>
-#include <algorithm>    // std::swap
-#include <numeric>
+//#include <algorithm>    // std::swap
+//#include <numeric>
 #include <time.h>
 #include <boost/random/mersenne_twister.hpp>
 #include <boost/random/normal_distribution.hpp>
