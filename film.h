@@ -6,8 +6,6 @@
 #include <time.h>
 #include <boost/random/mersenne_twister.hpp>
 #include <boost/random/normal_distribution.hpp>
-#include <boost/random/poisson_distribution.hpp>
-#include <boost/random/gamma_distribution.hpp>
 #include <boost/random/variate_generator.hpp>
 
 
