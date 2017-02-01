@@ -1,5 +1,5 @@
-CXX = g++
-CXXFLAGS = -Wno-deprecated -w -O4 -Wall
+CXX = g++ 
+CXXFLAGS =  -Wno-deprecated -w -O4 -Wall
 
 DIFF = ./sdiff
 PRE = ./
@@ -11,26 +11,25 @@ MINOR = 0
 
 everything:    	instabilities
 
-instabilities_obj = instabilities.o simulation.o create_forces.o newton-raphson_tools.o initial_conditions.o random_no_generators.o read_write_msg.o 
+instabilities_obj = instabilities.o film.o initial_conditions.o newton-raphson_tools.o read_write_msg.o
+
 instabilities:    $(instabilities_obj)
 		$(CXX) -o $@ $(instabilities_obj) -L. -lm $(CXXFLAGS)
 
 
+instabilities.o: instabilities.cpp read_write_msg.h film.h
 
-instabilities.o: instabilities.cpp simulation.h read_write_msg.h
+film.o: film.cpp initial_conditions.h newton-raphson_tools.h read_write_msg.h
 
-simulation.o:    simulation.cpp initial_conditions.h newton-raphson_tools.h create_forces.h read_write_msg.h
-
-create_forces.o: create_forces.cpp random_no_generators.cpp 
-
-initial_conditions.o: initial_conditions.cpp random_no_generators.h read_write_msg.h
-
-random_no_generators.o: random_no_generators.cpp 
+initial_conditions.o: initial_conditions.cpp read_write_msg.h
 
 read_write_msg.o: read_write_msg.cpp 
 
+newton-raphson_tools.o: newton-raphson_tools.cpp
 
-instabilities.txx:   	instabilities
+
+
+instabilities.txx:     instabilities
 		$(PRE) instabilities > instabilities.txx
 		$(DIFF)instabilities.txt instabilities.txx
 
