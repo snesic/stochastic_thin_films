@@ -20,7 +20,7 @@ void initial_condition_sin(double *h, int L, double dx, double b)   // Initial c
 {
     int i; double A, B;
     
-    B=0.1; A=0;
+    B=0.1; A=0.01;
     for(i=0;i<L;i++)
         h[i]= B + A*cos(2*PI*i*dx/2.66);
 }
