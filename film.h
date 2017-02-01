@@ -32,12 +32,7 @@ public:
     
     film(int L=400, double dx=0.02, double dt=1e-5, double b=0.02, int ugao=0, double sigma=0);
     int simulation(double t, double& t0, long int *inic);
-    
-    typedef boost::mt19937 ENG;    // Mersenne Twister d q
-//    typedef boost::normal_distribution<> GAUSS;
-//    typedef boost::variate_generator<ENG,GAUSS> GEN;    // Variate generator
-
-    
+        
     
  private:
     
