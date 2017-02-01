@@ -52,7 +52,7 @@ void print_initial_parameters(double sigma, double dt, double dx, int L, double 
     cout<< "Starting iteration: "<< i_sim_0 << endl;
 }
 
-int write_in_File(double *h, int *ind, int L, double dx, double A, double B, int j_time, string dir) // write data into files.
+int write_in_File(double *h, int L, double dx, int j_time, string dir) // write data into files.
 {
     int i;
     ofstream dat;

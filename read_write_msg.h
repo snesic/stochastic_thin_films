@@ -14,7 +14,7 @@ int write_email_with_sim_data(int, int, double, double, double, double, double, 
 
 void print_initial_parameters(double, double, double, int, double, double, double, int, int, double, double);
 
-int write_in_File(double *, int *, int, double, double , double ,int, string);
+int write_in_File(double *, int, double, int, string);
 
 int read_position(double *, int, string);
 
