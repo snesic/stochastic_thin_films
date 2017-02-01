@@ -16,10 +16,6 @@ void check_volume(const int&, double&, double *, double *, const double&, const 
 
 int check_second_time_derivative(const int&, double *, double *, double *, double& , double, int&);
 
-//int check_newton_convergence(const int&, double *, double *, double *, double *, const double&, int *, int&, const int&, double&);
-
-
-
 int check_newton_convergence(const int&, double *, double *, double *, double&, const double&, int&, int&, const int&, double&);
 
 
