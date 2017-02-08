@@ -114,11 +114,9 @@ int film::simulation(double t, double& t0, long int *inic)
     no_good_solutions=0;
     jdt = t0;
     dt_old = dt;
-
-    double *ptr;
-
     
     vol_0 = calculate_volume(L, h, dx);
+    
     
     do
     {
