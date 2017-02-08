@@ -115,6 +115,9 @@ int film::simulation(double t, double& t0, long int *inic)
     jdt = t0;
     dt_old = dt;
 
+    double *ptr;
+
+    
     vol_0 = calculate_volume(L, h, dx);
     
     do
@@ -177,11 +180,7 @@ int film::simulation(double t, double& t0, long int *inic)
             dt=dt+0.001*dt;
         }
 
-        //swap(h,old_sol);
-        //copy ( y, y+L, h );
-
         for(i=0;i<L;i++) { old_sol[i]=h[i]; h[i]=y[i]; }   //---New solution -> initial condition
-        
         
     } while (jdt<=t);   //----------------- End of the simulation - writing data -----------------//
     
